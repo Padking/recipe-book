@@ -1,0 +1,54 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Рецепты+</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/library/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static '/css/library/select2.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/recipelist.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/recipelist.select.css' %}"/>
+    {% block extrastyle %}{% endblock %}
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Рецепты+</a>
+    </nav>
+</header>
+
+<main role="main">
+    <section class="jumbotron p-4 text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Каталог рецептов</h1>
+            <p class="lead text-muted">{{ form.description }}</p>
+            <div class="row">
+                <div class="col-md-12">
+                    {% block form %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="text-muted">
+    <div class="container text-center">
+
+    </div>
+</footer>
+<script src="{% static "/js/library/jquery-3.5.0.min.js" %}"></script>
+<script src="{% static "/js/library/bootstrap.min.js" %}"></script>
+{% block extrajs %}
+    <script src="{% static "/js/library/select2.min.js" %}"></script>
+    <script src="{% static "/js/library/select2.ru.js" %}"></script>
+    <script src="{% static "/js/recipelist.select.js" %}"></script>
+{% endblock %}
+</body>
+</html>

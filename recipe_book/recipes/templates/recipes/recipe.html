@@ -1,0 +1,24 @@
+<p>
+  {{ selected_recipe.instruction }}
+</p>
+
+<table class="table table-hover js-table">
+  <colgroup>
+      <col style="width: 40%;">
+      <col style="width: 20%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th scope="col">Ингредиент</th>
+      <th scope="col">Кол-во</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ingredient in ingredients %}
+      <tr>
+        <td>{{ ingredient.title }}</td>
+        <td>{{ ingredient.quantity }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

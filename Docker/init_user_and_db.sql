@@ -1,0 +1,3 @@
+CREATE USER proba WITH ENCRYPTED PASSWORD 'proba';
+CREATE DATABASE recipe_book ENCODING 'UTF8' template=template0 OWNER proba;
+GRANT ALL PRIVILEGES ON DATABASE recipe_book TO proba;

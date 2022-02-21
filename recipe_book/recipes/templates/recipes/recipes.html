@@ -1,0 +1,22 @@
+<table class="table table-hover js-table">
+  <colgroup>
+    <col style="width: 100%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th scope="col">Рецепт</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for recipe in recipes %}
+        <tr>
+          <td>
+            <details>
+              <summary>{{ recipe.title }}</summary>
+              {% include 'recipes/recipe.html' with ingredients=recipe.ingredients.all selected_recipe=recipe %}
+            </details>
+          </td>
+        </tr>
+      {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+version: "3.0"
+services:
+    web:
+        build:
+            context: ./recipe_book
+            dockerfile: ./Docker/web.Dockerfile
+        command: python manage.py runserver 0.0.0.0:8000
+        env_file:
+            - ./.env
+        ports:
+            - 8000:8000
+        volumes:
+            - ./recipe_book/:/usr/src/app/
+    db:
+        build:
+            context: ./Docker
+            dockerfile: postgres.Dockerfile
+        env_file:
+            - .env.db
+        expose:
+            - "5432"
+        ports:
+            - 5432:5432
+        restart: on-failure
+        volumes:
+            - db_data:/var/lib/postgresql/data
+volumes:
+    db_data:

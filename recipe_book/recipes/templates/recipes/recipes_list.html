@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block form %}
+  <form class="js-form">
+    {% include 'recipes/select_form.html' with id='recipe_id' title=form.recipe.title subjects=form.recipe.objects subject_selected=form.recipe.selected %}
+    {% include 'recipes/select_form.html' with id='ingredient_id' title=form.ingredient.title subjects=form.ingredient.objects subject_selected=form.ingredient.selected %}
+  </form>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% if not ingredients %}
+      {% include 'recipes/none_info.html' %}
+    <!-- Поля формы заполнены-->
+    {% elif selected_recipe and selected_ingredient %}
+      {% include 'recipes/recipe.html' with ingredients=selected_recipe.get.ingredients.all selected_recipe=selected_recipe.get %}
+    <!-- Заполнено поле "Ингредиент"-->
+    {% elif ingredients.count == 1 %}
+      {% include 'recipes/recipes.html' with recipes=selected_ingredient.get.recipes.all %}
+      <!-- Заполнено поле "Рецепт"-->
+    {% elif ingredients.count < form.ingredient.objects.count %}
+      {% include 'recipes/recipe.html' with ingredients=ingredients selected_recipe=selected_recipe.get %}
+      <!-- Поля формы не заполнены-->
+    {% elif ingredients.count == form.ingredient.objects.count %}
+      {% include 'recipes/recipes.html' with recipes=form.recipe.objects %}
+    {% endif %}
+  </div>
+{% endblock %}
